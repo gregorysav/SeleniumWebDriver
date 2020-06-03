@@ -1,6 +1,5 @@
 package phptravels;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,6 @@ import java.util.List;
 public class AccountPage {
     private static String BASE_URL = "https://www.phptravels.net/account/";
     WebDriver driver;
-    BookingsPage bookingsPage;
 
     @FindBy(xpath = "//h3[contains(text(), 'Demo')]")
     WebElement greetingMsg;
@@ -41,13 +39,13 @@ public class AccountPage {
     @FindBy(id = "dropdownLangauge")
     WebElement dropdownLangauge;
 
-    @FindBy(xpath = "/html//header[@id='//header-waypoint-sticky']/div[@class='header-top']/div[@class='container-fluid']//ul//div[@class='dropdown dropdown-login dropdown-tab']/a[@id='dropdownCurrency']")
-    WebElement demoBtn;
-
     @FindBy(xpath = "//a[contains(text(), 'Invoice')]")
     WebElement invoiceBtn;
 
-    @FindBy(xpath = "/html//header[@id='//header-waypoint-sticky']/div[@class='header-top']/div[@class='container-fluid']//ul//div[@class='dropdown-menu dropdown-menu-right show']//a[@href='https://www.phptravels.net/account/logout/']")
+    @FindBy(linkText = "DEMO")
+    WebElement demoBtn;
+
+    @FindBy(linkText = "Logout")
     WebElement logout;
 
     public AccountPage(WebDriver driver){
@@ -56,36 +54,38 @@ public class AccountPage {
         PageFactory.initElements(driver, this);
     }
 
-    public AccountPage clickOnLink(String linkName) {
-        elementIsPresent(greetingMsg);
+    public void clickOnLink(String linkName) {
         for (WebElement el: navLinks) {
             WebElement linkNameEl = el.findElement(By.xpath("//*[contains(text(),'"+linkName+"')]"));
             if(linkNameEl.isDisplayed()) {
                 linkNameEl.click();
             }
         }
-        return this;
     }
 
     public boolean elementIsPresent(WebElement el) {
         return el.isDisplayed();
     }
 
-    public boolean fieldHasValue(WebElement el, String value) {
-        return el.getText().equals(value);
+    private boolean fieldHasValue(WebElement el, String value) {
+        return el.getAttribute("value").equals(value);
     }
 
-    public AccountPage checkMyProfile() {
-        fieldHasValue(firstname, "Demo");
-        fieldHasValue(lastname, "User");
-        fieldHasValue(email, "user@phptravels.com");
-        return this;
+    public boolean checkMyProfile() {
+        if (fieldHasValue(firstname, "Demo") && fieldHasValue(lastname, "User") && fieldHasValue(email, "user@phptravels.com")) {
+            return true;
+        }
+        return false;
     }
 
-    public AccountPage checkBookings() {
-        bookingsPage = new BookingsPage(driver);
-        bookingsPage.checkBookingRow();
-        return this;
+    public boolean locateBookingElement(String elementName) {
+        for (WebElement el: bookingList) {
+            WebElement findElement = el.findElement(By.xpath("//*[contains(text(), '"+elementName+"')]"));
+            if (findElement.isDisplayed()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public AccountPage chooseCurrency(String currency) {
@@ -102,10 +102,9 @@ public class AccountPage {
         return this;
     }
 
-    public AccountPage checkWishlist() {
+    public boolean checkWishlist() {
         wishlist.click();
-        driver.findElement(By.xpath("//h4[contains(text(), 'No Wishlist Items Found')]"));
-        return this;
+        return driver.findElement(By.xpath("//h4[contains(text(), 'No Wishlist Items Found')]")).isDisplayed();
     }
 
     public void goToInvoice() {
