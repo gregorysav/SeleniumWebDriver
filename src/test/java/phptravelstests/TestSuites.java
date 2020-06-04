@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import phptravels.AccountPage;
 import phptravels.Currency;
 import phptravels.Languages;
@@ -25,8 +27,11 @@ public class TestSuites {
     }
 
     @After
-    public void cleanup() {
+    public void cleanup() throws InterruptedException {
+        Thread.sleep(2000);
         accountPage.logout();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.urlContains("login"));
         Assert.assertTrue(driver.getCurrentUrl().contains("login"));
         driver.close();
     }
@@ -34,13 +39,14 @@ public class TestSuites {
     @Test
     public void validateAccountPage() {
         accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.urlMatches(accountPage.getURL()));
         accountPage.clickOnLink("Bookings");
         Assert.assertTrue(accountPage.locateBookingElement("Rendezvous Hotels"));
         Assert.assertTrue(accountPage.locateBookingElement("Singapore"));
         accountPage.clickOnLink("My Profile");
         Assert.assertTrue(accountPage.checkMyProfile());
-        Assert.assertTrue(accountPage.checkWishlist());
-        accountPage.chooseCurrency(Currency.EUR.toString());
-        accountPage.chooseLanguage(Languages.English.toString());
+        accountPage.chooseCurrency(Currency.GBP.toString());
+        accountPage.chooseLanguage(Languages.Spanish.toString());
     }
 }

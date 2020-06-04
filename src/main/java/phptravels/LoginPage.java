@@ -3,10 +3,9 @@ package phptravels;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-    private static String BASE_URL = "https://www.phptravels.net/login";
+public class LoginPage extends BasePage {
+    private static String loginURL = BASE_URL + "login";
     WebDriver driver;
 
     @FindBy(name = "username")
@@ -19,9 +18,8 @@ public class LoginPage {
     WebElement btnSubmit;
 
     public LoginPage(WebDriver driver){
-        this.driver = driver;
-        driver.get(BASE_URL);
-        PageFactory.initElements(driver, this);
+        super(driver);
+        driver.get(loginURL);
     }
 
     public void enterToElement(WebElement el, String value) {
@@ -33,5 +31,4 @@ public class LoginPage {
         enterToElement(password, "demouser");
         btnSubmit.click();
     }
-
 }

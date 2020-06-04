@@ -4,12 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class AccountPage {
-    private static String BASE_URL = "https://www.phptravels.net/account/";
+public class AccountPage extends BasePage {
+    private static String accountURL = BASE_URL + "account/";
     WebDriver driver;
 
     @FindBy(xpath = "//h3[contains(text(), 'Demo')]")
@@ -17,9 +18,6 @@ public class AccountPage {
 
     @FindBy(className = "nav-link")
     List<WebElement> navLinks;
-
-    @FindBy(xpath = "//*[contains(text(),'Wishlist')]")
-    WebElement wishlist;
 
     @FindBy(name = "firstname")
     WebElement firstname;
@@ -49,9 +47,11 @@ public class AccountPage {
     WebElement logout;
 
     public AccountPage(WebDriver driver){
-        this.driver = driver;
-        driver.get(BASE_URL);
-        PageFactory.initElements(driver, this);
+        super(driver);
+    }
+
+    public String getURL() {
+        return accountURL;
     }
 
     public void clickOnLink(String linkName) {
@@ -88,23 +88,16 @@ public class AccountPage {
         return false;
     }
 
-    public AccountPage chooseCurrency(String currency) {
+    public void chooseCurrency(String currency) {
         dropdownCurrency.click();
-        WebElement selectCurrency = driver.findElement(By.xpath("//div[@class='dropdown-menu-inner']/a[contains(text(), '"+currency+"')]"));
+        WebElement selectCurrency = dropdownCurrency.findElement(By.xpath("//a[contains(text(), '"+currency+"')]"));
         selectCurrency.click();
-        return this;
     }
 
-    public AccountPage chooseLanguage(String language) {
+    public void chooseLanguage(String language) {
         dropdownLangauge.click();
-        WebElement selectLanguage = driver.findElement(By.xpath("//div[@class='dropdown-menu-inner']/a[contains(text(), '"+language+"')]"));
+        WebElement selectLanguage = dropdownLangauge.findElement(By.xpath("//a[contains(text(), '"+language+"')]"));
         selectLanguage.click();
-        return this;
-    }
-
-    public boolean checkWishlist() {
-        wishlist.click();
-        return driver.findElement(By.xpath("//h4[contains(text(), 'No Wishlist Items Found')]")).isDisplayed();
     }
 
     public void goToInvoice() {
