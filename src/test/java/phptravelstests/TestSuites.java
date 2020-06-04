@@ -1,13 +1,13 @@
 package phptravelstests;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import phptravels.AccountPage;
 import phptravels.Currency;
 import phptravels.Languages;
@@ -18,7 +18,7 @@ public class TestSuites {
     LoginPage loginPage;
     AccountPage accountPage;
 
-    @Before
+    @BeforeTest
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
@@ -26,9 +26,9 @@ public class TestSuites {
         loginPage.submitForm();
     }
 
-    @After
+    @AfterTest
     public void cleanup() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         accountPage.logout();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.urlContains("login"));
