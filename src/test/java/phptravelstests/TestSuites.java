@@ -12,6 +12,9 @@ import phptravels.AccountPage;
 import phptravels.Currency;
 import phptravels.Languages;
 import phptravels.LoginPage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class TestSuites {
     WebDriver driver;
@@ -22,8 +25,11 @@ public class TestSuites {
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
         loginPage = new LoginPage(driver);
         loginPage.submitForm();
+        Assert.assertFalse(loginPage.isResultLoginDisplayed());
     }
 
     @AfterTest
@@ -37,6 +43,34 @@ public class TestSuites {
     }
 
     @Test
+    public void validateSignUpLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.clickOnElement("Supplier Sign Up");
+        List<String> signupTabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(signupTabs.get(1));
+        Assert.assertTrue(driver.getCurrentUrl().contains("supplier-register"));
+        driver.close();
+        driver.switchTo().window(signupTabs.get(0));
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
+    @Test
+    public void validateLoginLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.clickOnElement("Supplier Login");
+        List<String> loginTabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(loginTabs.get(1));
+        Assert.assertTrue(driver.getCurrentUrl().contains("supplier"));
+        driver.close();
+        driver.switchTo().window(loginTabs.get(0));
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
+    @Test
     public void validateAccountPage() {
         accountPage = new AccountPage(driver);
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -47,6 +81,8 @@ public class TestSuites {
         accountPage.clickOnLink("My Profile");
         Assert.assertTrue(accountPage.checkMyProfile());
         accountPage.chooseCurrency(Currency.GBP.toString());
-        accountPage.chooseLanguage(Languages.Spanish.toString());
+        accountPage.chooseLanguage(Languages.English.toString());
     }
+
+
 }

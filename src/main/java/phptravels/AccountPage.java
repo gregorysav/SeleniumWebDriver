@@ -4,9 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 public class AccountPage extends BasePage {
@@ -37,14 +34,15 @@ public class AccountPage extends BasePage {
     @FindBy(id = "dropdownLangauge")
     WebElement dropdownLangauge;
 
-    @FindBy(xpath = "//a[contains(text(), 'Invoice')]")
-    WebElement invoiceBtn;
-
     @FindBy(linkText = "DEMO")
     WebElement demoBtn;
 
     @FindBy(linkText = "Logout")
     WebElement logout;
+
+    @FindBy(id = "footer")
+    WebElement footerMenu;
+
 
     public AccountPage(WebDriver driver){
         super(driver);
@@ -61,6 +59,10 @@ public class AccountPage extends BasePage {
                 linkNameEl.click();
             }
         }
+    }
+
+    public void clickOnElement(String el) {
+        footerMenu.findElement(By.linkText(el)).click();
     }
 
     public boolean elementIsPresent(WebElement el) {
@@ -98,26 +100,6 @@ public class AccountPage extends BasePage {
         dropdownLangauge.click();
         WebElement selectLanguage = dropdownLangauge.findElement(By.xpath("//a[contains(text(), '"+language+"')]"));
         selectLanguage.click();
-    }
-
-    public void goToInvoice() {
-        elementIsPresent(invoiceBtn);
-        invoiceBtn.click();
-    }
-
-    public static int getBookingInfo(String requestInfo) {
-        int returnValue = 0;
-        switch (requestInfo) {
-            case "Booking ID" :
-                returnValue = 31;
-                break;
-            case "Booking Number" :
-                returnValue = 923;
-                break;
-            default:
-                returnValue = -1;
-        }
-        return returnValue;
     }
 
     public void logout() {

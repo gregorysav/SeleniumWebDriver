@@ -17,6 +17,9 @@ public class LoginPage extends BasePage {
     @FindBy(className = "loginbtn")
     WebElement btnSubmit;
 
+    @FindBy(className = "resultlogin")
+    WebElement resultLogin;
+
     public LoginPage(WebDriver driver){
         super(driver);
         driver.get(loginURL);
@@ -30,5 +33,9 @@ public class LoginPage extends BasePage {
         enterToElement(username, "user@phptravels.com");
         enterToElement(password, "demouser");
         btnSubmit.click();
+    }
+
+    public boolean isResultLoginDisplayed() {
+        return resultLogin.isDisplayed();
     }
 }
