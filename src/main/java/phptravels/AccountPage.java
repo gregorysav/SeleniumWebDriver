@@ -61,7 +61,7 @@ public class AccountPage extends BasePage {
         }
     }
 
-    public void clickOnElement(String el) {
+    public void clickOnFooterElement(String el) {
         footerMenu.findElement(By.linkText(el)).click();
     }
 
