@@ -42,6 +42,17 @@ public class TestAccountPageLinks {
     }
 
     @Test
+    public void validateVisaLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.clickOnMobileMenuElement("Visa");
+        Assert.assertTrue(driver.getCurrentUrl().contains("m-visa"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
+    @Test
     public void validateSignUpLink() {
         accountPage = new AccountPage(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -114,4 +125,49 @@ public class TestAccountPageLinks {
         driver.navigate().back();
         Assert.assertTrue(driver.getCurrentUrl().contains("account"));
     }
+
+    @Test
+    public void validateFAQLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.clickOnFooterElement("FAQ");
+        Assert.assertTrue(driver.getCurrentUrl().contains("FAQ"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
+    @Test
+    public void validateOurPartnersLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.clickOnFooterElement("Our Partners");
+        Assert.assertTrue(driver.getCurrentUrl().contains("Our-Partners"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
+    @Test
+    public void validatePrivacyPolicyLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.clickOnFooterElement("Privacy Policy");
+        Assert.assertTrue(driver.getCurrentUrl().contains("Privacy-Policy"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
+    @Test
+    public void validateTermsOfUseLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.clickOnFooterElement("Terms of Use");
+        Assert.assertTrue(driver.getCurrentUrl().contains("Terms-of-Use"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
 }

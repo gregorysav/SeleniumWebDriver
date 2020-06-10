@@ -40,6 +40,9 @@ public class AccountPage extends BasePage {
     @FindBy(linkText = "Logout")
     WebElement logout;
 
+    @FindBy(id = "mobileMenuMain")
+    WebElement mobileMenuMain;
+
     @FindBy(id = "footer")
     WebElement footerMenu;
 
@@ -59,6 +62,10 @@ public class AccountPage extends BasePage {
                 linkNameEl.click();
             }
         }
+    }
+
+    public void clickOnMobileMenuElement(String el) {
+        mobileMenuMain.findElement(By.linkText(el)).click();
     }
 
     public void clickOnFooterElement(String el) {
