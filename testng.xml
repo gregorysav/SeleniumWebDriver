@@ -4,6 +4,7 @@
     <test name="Test Suite" >
         <classes>
             <class name="phptravelstests.TestSuites" />
+            <class name="phptravelstests.TestAccountPageLinks"></class>
         </classes>
     </test>
 </suite>

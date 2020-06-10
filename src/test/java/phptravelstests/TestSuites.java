@@ -12,8 +12,6 @@ import phptravels.AccountPage;
 import phptravels.Currency;
 import phptravels.Languages;
 import phptravels.LoginPage;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TestSuites {
@@ -42,79 +40,6 @@ public class TestSuites {
         driver.close();
     }
 
-    @Test
-    public void validateSignUpLink() {
-        accountPage = new AccountPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("account"));
-        accountPage.clickOnFooterElement("Supplier Sign Up");
-        List<String> signupTabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(signupTabs.get(1));
-        wait.until(ExpectedConditions.urlContains("supplier-register"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("supplier-register"));
-        driver.close();
-        driver.switchTo().window(signupTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
-    }
-
-    @Test
-    public void validateLoginLink() {
-        accountPage = new AccountPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("account"));
-        accountPage.clickOnFooterElement("Supplier Login");
-        List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(browserTabs.get(1));
-        wait.until(ExpectedConditions.urlContains("supplier"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("supplier"));
-        driver.close();
-        driver.switchTo().window(browserTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
-    }
-
-    @Test
-    public void validateContactLink() {
-        accountPage = new AccountPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("account"));
-        accountPage.clickOnFooterElement("Contact");
-        Assert.assertTrue(driver.getCurrentUrl().contains("contact-us"));
-        driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
-    }
-
-    @Test
-    public void validateHowToBookLink() {
-        accountPage = new AccountPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("account"));
-        accountPage.clickOnFooterElement("How to Book");
-        Assert.assertTrue(driver.getCurrentUrl().contains("How-to-Book"));
-        driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
-    }
-
-    @Test
-    public void validateBookingTipsLink() {
-        accountPage = new AccountPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("account"));
-        accountPage.clickOnFooterElement("Booking Tips");
-        Assert.assertTrue(driver.getCurrentUrl().contains("Booking-Tips"));
-        driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
-    }
-
-    @Test
-    public void validateAboutUsLink() {
-        accountPage = new AccountPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("account"));
-        accountPage.clickOnFooterElement("About Us");
-        Assert.assertTrue(driver.getCurrentUrl().contains("About-Us"));
-        driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
-    }
 
     @Test
     public void validateAccountPage() {
