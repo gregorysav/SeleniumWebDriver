@@ -169,5 +169,4 @@ public class TestAccountPageLinks {
         driver.navigate().back();
         Assert.assertTrue(driver.getCurrentUrl().contains("account"));
     }
-
 }

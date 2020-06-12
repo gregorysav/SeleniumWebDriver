@@ -8,16 +8,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import phptravels.AccountPage;
-import phptravels.Currency;
-import phptravels.Languages;
-import phptravels.LoginPage;
+import phptravels.*;
+
 import java.util.concurrent.TimeUnit;
 
 public class TestSuites {
     WebDriver driver;
     LoginPage loginPage;
     AccountPage accountPage;
+    MyProfile myProfile;
 
     @BeforeTest
     public void setup() {
@@ -53,6 +52,17 @@ public class TestSuites {
         Assert.assertTrue(accountPage.checkMyProfile());
         accountPage.chooseCurrency(Currency.GBP.toString());
         accountPage.chooseLanguage(Languages.English.toString());
+    }
+
+    @Test
+    public void editMyProfile() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        accountPage.clickOnLink("My Profile");
+        myProfile = new MyProfile(driver);
+        myProfile.setMyProfileInformation("Karagatsi 2", "Koz", "11551", "Greece");
+        wait.until(ExpectedConditions.urlContains("account"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
     }
 
 

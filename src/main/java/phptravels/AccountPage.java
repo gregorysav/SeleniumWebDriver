@@ -72,7 +72,7 @@ public class AccountPage extends BasePage {
         footerMenu.findElement(By.linkText(el)).click();
     }
 
-    public boolean elementIsPresent(WebElement el) {
+    public boolean isElementPresent(WebElement el) {
         return el.isDisplayed();
     }
 
