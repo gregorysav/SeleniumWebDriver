@@ -169,4 +169,37 @@ public class TestAccountPageLinks {
         driver.navigate().back();
         Assert.assertTrue(driver.getCurrentUrl().contains("account"));
     }
+
+    @Test
+    public void validateAppStoreDeviceLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        accountPage.downloadOnDevice("IOS");
+        List<String> appStoreTabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(appStoreTabs.get(1));
+        wait.until(ExpectedConditions.urlContains("apps.apple.com"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("apps.apple.com"));
+        driver.close();
+        driver.switchTo().window(appStoreTabs.get(0));
+        wait.until(ExpectedConditions.urlContains("account"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
+
+    @Test
+    public void validatePlayStoreDeviceLink() {
+        accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.urlContains("account"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        accountPage.downloadOnDevice("Android");
+        List<String> playStoreTabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(playStoreTabs.get(1));
+        wait.until(ExpectedConditions.urlContains("play.google.com"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("play.google.com"));
+        driver.close();
+        driver.switchTo().window(playStoreTabs.get(0));
+        wait.until(ExpectedConditions.urlContains("account"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+    }
 }

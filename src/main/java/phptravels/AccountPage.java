@@ -4,11 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 
 public class AccountPage extends BasePage {
     private static String accountURL = BASE_URL + "account/";
     WebDriver driver;
+    WebDriverWait wait;
 
     @FindBy(xpath = "//h3[contains(text(), 'Demo')]")
     WebElement greetingMsg;
@@ -46,9 +50,16 @@ public class AccountPage extends BasePage {
     @FindBy(id = "footer")
     WebElement footerMenu;
 
+    @FindBy(xpath = "//span[contains(text(), 'App Store')]")
+    WebElement appStoreLink;
+
+    @FindBy(xpath = "//span[contains(text(), 'Play Market')]")
+    WebElement playStoreLink;
+
 
     public AccountPage(WebDriver driver){
         super(driver);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public String getURL() {
@@ -85,6 +96,14 @@ public class AccountPage extends BasePage {
             return true;
         }
         return false;
+    }
+
+    public void downloadOnDevice(String device) {
+       if (device.equals("IOS")) {
+           appStoreLink.click();
+        }else if (device.equals("Android")) {
+           playStoreLink.click();
+        }
     }
 
     public boolean locateBookingElement(String elementName) {
