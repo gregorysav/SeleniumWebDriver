@@ -39,7 +39,6 @@ public class TestSuites {
         driver.close();
     }
 
-
     @Test
     public void validateAccountPage() {
         accountPage = new AccountPage(driver);
@@ -50,7 +49,7 @@ public class TestSuites {
         Assert.assertTrue(accountPage.locateBookingElement("Singapore"));
         accountPage.clickOnLink("My Profile");
         Assert.assertTrue(accountPage.checkMyProfile());
-        accountPage.chooseCurrency(Currency.GBP.toString());
+        accountPage.chooseCurrency(Currency.EUR.toString());
         accountPage.chooseLanguage(Languages.English.toString());
     }
 
