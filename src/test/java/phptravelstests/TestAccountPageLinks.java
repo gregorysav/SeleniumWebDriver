@@ -40,7 +40,7 @@ public class TestAccountPageLinks {
         Assert.assertTrue(driver.getCurrentUrl().contains("login"));
         driver.close();
     }
-// here
+
     @Test
     public void validateVisaLink() {
         accountPage = new AccountPage(driver);
