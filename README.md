@@ -31,3 +31,6 @@ After doing this both .idea and target folders must be created.
 2. Execute `<allure --version>` in console to make sure that allure is now available
 3. Run Test Suites from testng.xml file
 4. Execute `<allure serve /home/path/to/project/allure-results>` in console to serve the html file on the browser
+
+## Automatically created screenshots
+After running Test Suites from testng.xml screenshots of the expected result are taken and stored in screenshots directory
