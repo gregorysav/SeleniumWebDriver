@@ -19,8 +19,9 @@ After importing you should open it as a Maven project.
 [Eclipse](https://vaadin.com/learn/tutorials/import-maven-project-eclipse)
 
 ## Run Test Suites
-Before running the tests you should reimport Maven and also build the project.
-After doing this both .idea and target folders must be created.
+You can run the Test Suites from terminal
+1. If you want to run admin's tests run `<mvn clean test -Pta>`
+2. If you want to run admin's tests run `<mvn clean test -Ptu>`
 
 ## Create Allure reports
 1. Download and install Allure binary
