@@ -1,15 +1,14 @@
-package phptravels;
+package phptravelsuser;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class AccountPage extends BasePage {
+public class AccountPageUserUser extends BasePageUser {
     private static String accountURL = BASE_URL + "account/";
     WebDriver driver;
     WebDriverWait wait;
@@ -57,7 +56,7 @@ public class AccountPage extends BasePage {
     WebElement playStoreLink;
 
 
-    public AccountPage(WebDriver driver){
+    public AccountPageUserUser(WebDriver driver){
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }

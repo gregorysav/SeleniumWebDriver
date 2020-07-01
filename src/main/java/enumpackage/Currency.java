@@ -1,4 +1,4 @@
-package phptravels;
+package enumpackage;
 
 public enum Currency {
     USD("USD"),

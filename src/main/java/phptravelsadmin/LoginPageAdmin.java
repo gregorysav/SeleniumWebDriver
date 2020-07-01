@@ -1,26 +1,26 @@
-package phptravels;
+package phptravelsadmin;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage {
-    private static String loginURL = BASE_URL + "login";
+public class LoginPageAdmin extends BasePageAdmin {
+    private static String loginURL = BASE_URL;
     WebDriver driver;
 
-    @FindBy(name = "username")
+    @FindBy(name = "email")
     WebElement username;
 
     @FindBy(name = "password")
     WebElement password;
 
-    @FindBy(className = "loginbtn")
+    @FindBy(className = "btn-lg")
     WebElement btnSubmit;
 
-    @FindBy(className = "resultlogin")
+    @FindBy(className = "alert-danger")
     WebElement resultLogin;
 
-    public LoginPage(WebDriver driver){
+    public LoginPageAdmin(WebDriver driver){
         super(driver);
         driver.get(loginURL);
     }
@@ -30,8 +30,8 @@ public class LoginPage extends BasePage {
     }
 
     public void submitForm() {
-        enterToElement(username, "user@phptravels.com");
-        enterToElement(password, "demouser");
+        enterToElement(username, "admin@phptravels.com");
+        enterToElement(password, "demoadmin");
         btnSubmit.click();
     }
 

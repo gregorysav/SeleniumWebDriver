@@ -1,24 +1,25 @@
-package phptravelstests;
+package phptravelstestsuser;
 
+import enumpackage.Currency;
+import enumpackage.Languages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import phptravels.*;
+import phptravelsuser.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public class TestSuites {
     WebDriver driver;
-    LoginPage loginPage;
-    AccountPage accountPage;
-    MyProfile myProfile;
+    LoginPageUser loginPage;
+    AccountPageUserUser accountPageUser;
+    MyProfileUser myProfileUser;
 
     @BeforeTest
     public void setup() throws IOException {
@@ -26,7 +27,7 @@ public class TestSuites {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPageUser(driver);
         loginPage.submitForm();
         Assert.assertFalse(loginPage.isResultLoginDisplayed());
     }
@@ -34,7 +35,7 @@ public class TestSuites {
     @AfterTest
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
-        accountPage.logout();
+        accountPageUser.logout();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.urlContains("login"));
         Assert.assertTrue(driver.getCurrentUrl().contains("login"));
@@ -43,28 +44,28 @@ public class TestSuites {
 
     @Test
     public void validateAccountPage(Method method) throws IOException {
-        accountPage = new AccountPage(driver);
+        accountPageUser = new AccountPageUserUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.urlMatches(accountPage.getURL()));
-        accountPage.clickOnLink("Bookings");
-        Assert.assertTrue(accountPage.locateBookingElement("Rendezvous Hotels"));
-        Assert.assertTrue(accountPage.locateBookingElement("Singapore"));
-        accountPage.clickOnLink("My Profile");
-        Assert.assertTrue(accountPage.checkMyProfile());
-        accountPage.chooseCurrency(Currency.EUR.toString());
-        accountPage.chooseLanguage(Languages.English.toString());
-        accountPage.createInstantPrintscreen(method.getName());
+        wait.until(ExpectedConditions.urlMatches(accountPageUser.getURL()));
+        accountPageUser.clickOnLink("Bookings");
+        Assert.assertTrue(accountPageUser.locateBookingElement("Rendezvous Hotels"));
+        Assert.assertTrue(accountPageUser.locateBookingElement("Singapore"));
+        accountPageUser.clickOnLink("My Profile");
+        Assert.assertTrue(accountPageUser.checkMyProfile());
+        accountPageUser.chooseCurrency(Currency.EUR.toString());
+        accountPageUser.chooseLanguage(Languages.English.toString());
+        accountPageUser.createInstantPrintscreen(method.getName());
     }
 
     @Test
     public void editMyProfile(Method method) throws IOException {
-        accountPage = new AccountPage(driver);
+        accountPageUser = new AccountPageUserUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 5);
-        accountPage.clickOnLink("My Profile");
-        myProfile = new MyProfile(driver);
-        myProfile.setMyProfileInformation("Karagatsi 2", "Koz", "11551", "Greece");
+        accountPageUser.clickOnLink("My Profile");
+        myProfileUser = new MyProfileUser(driver);
+        myProfileUser.setMyProfileInformation("Karagatsi 2", "Koz", "11551", "Greece");
         wait.until(ExpectedConditions.urlContains("account"));
         Assert.assertTrue(driver.getCurrentUrl().contains("account"));
-        accountPage.createInstantPrintscreen(method.getName());
+        accountPageUser.createInstantPrintscreen(method.getName());
     }
 }

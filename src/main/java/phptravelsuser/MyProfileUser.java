@@ -1,13 +1,12 @@
-package phptravels;
+package phptravelsuser;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyProfile extends BasePage {
+public class MyProfileUser extends BasePageUser {
     private static String accountURL = BASE_URL + "account/";
     WebDriver driver;
     WebDriverWait wait;
@@ -22,7 +21,7 @@ public class MyProfile extends BasePage {
     WebElement zip;
 
 
-    public MyProfile(WebDriver driver) {
+    public MyProfileUser(WebDriver driver) {
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }
