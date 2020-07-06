@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 
 public class LogInAdmin {
     WebDriver driver;
-    WebDriverWait wait;
     LoginPageAdmin loginPageAdmin;
     HomePageAdmin homePageAdmin;
     ProfilePageAdmin profilePageAdmin;
@@ -95,6 +94,66 @@ public class LogInAdmin {
         Assert.assertTrue(driver.getCurrentUrl().contains("integrations"));
         driver.close();
         driver.switchTo().window(signupTabs.get(0));
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+    }
+
+    @Test
+    public void validateServerHeaderBookingsLink() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        homePageAdmin = new HomePageAdmin(driver);
+        Assert.assertTrue(homePageAdmin.isServerHeaderPresent());
+        homePageAdmin.clickOnServerHeaderButton("Bookings");
+        wait.until(ExpectedConditions.urlContains("bookings"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("bookings"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+    }
+
+    @Test
+    public void validateServerHeaderCMSPagesLink() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        homePageAdmin = new HomePageAdmin(driver);
+        Assert.assertTrue(homePageAdmin.isServerHeaderPresent());
+        homePageAdmin.clickOnServerHeaderButton("CMS Pages");
+        wait.until(ExpectedConditions.urlContains("cms"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("cms"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+    }
+
+    @Test
+    public void validateServerHeaderBlogLink() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        homePageAdmin = new HomePageAdmin(driver);
+        Assert.assertTrue(homePageAdmin.isServerHeaderPresent());
+        homePageAdmin.clickOnServerHeaderButton("Blog");
+        wait.until(ExpectedConditions.urlContains("blog"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("blog"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+    }
+
+    @Test
+    public void validateServerHeaderNewsletterLink() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        homePageAdmin = new HomePageAdmin(driver);
+        Assert.assertTrue(homePageAdmin.isServerHeaderPresent());
+        homePageAdmin.clickOnServerHeaderButton("Newsletter");
+        wait.until(ExpectedConditions.urlContains("newsletter"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("newsletter"));
+        driver.navigate().back();
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+    }
+
+    @Test
+    public void validateServerHeaderBackupLink() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        homePageAdmin = new HomePageAdmin(driver);
+        Assert.assertTrue(homePageAdmin.isServerHeaderPresent());
+        homePageAdmin.clickOnServerHeaderButton("Backup");
+        wait.until(ExpectedConditions.urlContains("backup"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("backup"));
+        driver.navigate().back();
         Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
     }
 }
