@@ -111,9 +111,15 @@ public class SidebarLinksAdmin extends BasePageAdmin {
         viator.click();
     }
 
-    public void clickOnCartrawlerLink() {
-        cartrawler.click();
-    }
+    public void clickOnCartrawlerLink() { cartrawler.click(); }
+
+    public void clickOnVisaLink() { visa.click(); }
+
+    public void clickOnBlogLink() { blog.click(); }
+
+    public void clickOnLocationsLink() { locations.click(); }
+
+    public void clickOnSpecialOffersLink() { special_offers.click(); }
 
     public boolean checkGeneralLinks(String value) {
         if (value.equals("email") || value.equals("sms_settings")) {
@@ -178,6 +184,48 @@ public class SidebarLinksAdmin extends BasePageAdmin {
 
     public boolean checkCartrawlerLinks() {
         WebElement el = sidebar.findElement(By.xpath("//ul[@id='Cartrawler']//a[@href='https://www.phptravels.net/admin/cartrawler/settings']"));
+        if (el.isDisplayed()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkVisaLinks(String value) {
+        WebElement el = sidebar.findElement(By.xpath("//ul[@id='Ivisa']//a[@href='https://www.phptravels.net/admin/ivisa/"+ value+"']"));
+        if (el.isDisplayed()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkBlogLinks(String value) {
+        WebElement el;
+        if (value.equals("")) {
+            el = sidebar.findElement(By.xpath("//ul[@id='Blog']//a[@href='https://www.phptravels.net/admin/blog']"));
+        } else {
+            el = sidebar.findElement(By.xpath("//ul[@id='Blog']//a[@href='https://www.phptravels.net/admin/blog/"+ value +"']"));
+        }
+        if (el.isDisplayed()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkLocationsLinks() {
+        WebElement el = sidebar.findElement(By.xpath("//ul[@id='Locations']//a[@href='https://www.phptravels.net/admin/locations']"));
+        if (el.isDisplayed()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkSpecialOffersLinks(String value) {
+        WebElement el;
+        if (value.equals("")) {
+            el = sidebar.findElement(By.xpath("//ul[@id='SPECIAL_OFFERS']//a[@href='https://www.phptravels.net/admin/offers/']"));
+        } else {
+            el = sidebar.findElement(By.xpath("//ul[@id='SPECIAL_OFFERS']//a[@href='https://www.phptravels.net/admin/offers/"+ value +"/']"));
+        }
         if (el.isDisplayed()) {
             return true;
         }

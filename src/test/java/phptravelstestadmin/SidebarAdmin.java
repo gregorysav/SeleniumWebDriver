@@ -1,5 +1,7 @@
 package phptravelstestadmin;
 
+import io.qameta.allure.Issue;
+import io.qameta.allure.Link;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,6 +25,9 @@ public class SidebarAdmin {
     String[] accountsLinks = {"admins", "suppliers", "customers", "guest"};
     String[] hotelsLinks = {"", "rooms", "extras", "reviews", "settings"};
     String[] flightsLinks = {"routes", "airports", "settings", "airlines", "countries"};
+    String[] visaLinks = {"settings", "bookings"};
+    String[] blogLinks = {"category", "settings"};
+    String[] offersLinks = {"settings"};
 
     @BeforeTest
     public void setup() throws IOException {
@@ -41,6 +46,7 @@ public class SidebarAdmin {
     }
 
     @Test
+    @Link(name="Base page", url="https://www.phptravels.net/admin")
     public void validateDashboardLink() {
         wait = new WebDriverWait(driver, 10);
         Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
@@ -140,5 +146,47 @@ public class SidebarAdmin {
         sidebarLinksAdmin = new SidebarLinksAdmin(driver);
         sidebarLinksAdmin.clickOnCartrawlerLink();
         Assert.assertTrue(sidebarLinksAdmin.checkCartrawlerLinks());
+    }
+
+    @Test
+    public void validateVisaLink() {
+        wait = new WebDriverWait(driver, 10);
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        sidebarLinksAdmin = new SidebarLinksAdmin(driver);
+        sidebarLinksAdmin.clickOnVisaLink();
+        for (String link: visaLinks ) {
+            Assert.assertTrue(sidebarLinksAdmin.checkVisaLinks(link));
+        }
+    }
+
+    @Test
+    public void validateBlogLink() {
+        wait = new WebDriverWait(driver, 10);
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        sidebarLinksAdmin = new SidebarLinksAdmin(driver);
+        sidebarLinksAdmin.clickOnBlogLink();
+        for (String link: blogLinks ) {
+            Assert.assertTrue(sidebarLinksAdmin.checkBlogLinks(link));
+        }
+    }
+
+    @Test
+    public void validateLocationsLink() {
+        wait = new WebDriverWait(driver, 10);
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        sidebarLinksAdmin = new SidebarLinksAdmin(driver);
+        sidebarLinksAdmin.clickOnLocationsLink();
+        Assert.assertTrue(sidebarLinksAdmin.checkLocationsLinks());
+    }
+
+    @Test
+    public void validateOffersLink() {
+        wait = new WebDriverWait(driver, 10);
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        sidebarLinksAdmin = new SidebarLinksAdmin(driver);
+        sidebarLinksAdmin.clickOnSpecialOffersLink();
+        for (String link: offersLinks ) {
+            Assert.assertTrue(sidebarLinksAdmin.checkSpecialOffersLinks(link));
+        }
     }
 }
