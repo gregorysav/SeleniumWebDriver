@@ -2,7 +2,7 @@ package phptravelstestsuser;
 
 import enumpackage.Currency;
 import enumpackage.Languages;
-import org.junit.Assert;
+import static org.assertj.core.api.Assertions.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,7 +29,7 @@ public class TestSuites {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
         loginPage = new LoginPageUser(driver);
         loginPage.submitForm();
-        Assert.assertFalse(loginPage.isResultLoginDisplayed());
+        assertThat(loginPage.isResultLoginDisplayed()).isTrue();
     }
 
     @AfterTest
@@ -38,7 +38,7 @@ public class TestSuites {
         accountPageUser.logout();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.urlContains("login"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("login"));
+        assertThat(driver.getCurrentUrl().contains("login")).isTrue();
         driver.close();
     }
 
@@ -48,10 +48,10 @@ public class TestSuites {
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.urlMatches(accountPageUser.getURL()));
         accountPageUser.clickOnLink("Bookings");
-        Assert.assertTrue(accountPageUser.locateBookingElement("Rendezvous Hotels"));
-        Assert.assertTrue(accountPageUser.locateBookingElement("Singapore"));
+        assertThat(accountPageUser.locateBookingElement("Rendezvous Hotels")).isTrue();
+        assertThat(accountPageUser.locateBookingElement("Singapore")).isTrue();
         accountPageUser.clickOnLink("My Profile");
-        Assert.assertTrue(accountPageUser.checkMyProfile());
+        assertThat(accountPageUser.checkMyProfile()).isTrue();
         accountPageUser.chooseCurrency(Currency.EUR.toString());
         accountPageUser.chooseLanguage(Languages.English.toString());
         accountPageUser.createInstantPrintscreen(method.getName());
@@ -65,7 +65,7 @@ public class TestSuites {
         myProfileUser = new MyProfileUser(driver);
         myProfileUser.setMyProfileInformation("Karagatsi 2", "Koz", "11551", "Greece");
         wait.until(ExpectedConditions.urlContains("account"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
     }
 }
