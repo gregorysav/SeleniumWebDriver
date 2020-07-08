@@ -4,6 +4,7 @@
     <test name="Admin test" >
         <classes>
             <class name="phptravelstestadmin.LogInAdmin"></class>
+            <class name="phptravelstestadmin.SidebarAdmin"></class>
         </classes>
     </test>
 </suite>
