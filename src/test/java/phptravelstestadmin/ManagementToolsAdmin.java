@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import static org.assertj.core.api.Assertions.*;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -42,89 +42,89 @@ public class ManagementToolsAdmin {
     public void validateGoogleAccountsLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
         managementSectionAdmin.clickOnGoogleAccountsLink();
         List<String> googleAccountsTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(googleAccountsTabs.get(1));
         wait.until(ExpectedConditions.urlContains("google"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("google"));
+        assertThat(driver.getCurrentUrl().contains("google")).isTrue();
         driver.close();
         driver.switchTo().window(googleAccountsTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
     @Test
     public void validateGoogleAnalyticsLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
         managementSectionAdmin.clickOnGoogleAnalyticsLink();
         List<String> googleAnalyticsTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(googleAnalyticsTabs.get(1));
         wait.until(ExpectedConditions.urlContains("analytics"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("analytics"));
+        assertThat(driver.getCurrentUrl().contains("analytics")).isTrue();
         driver.close();
         driver.switchTo().window(googleAnalyticsTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
     @Test
     public void validateGoogleDevsLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
         managementSectionAdmin.clickOnGoogleDevsLink();
         List<String> googleDevsTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(googleDevsTabs.get(1));
         wait.until(ExpectedConditions.urlContains("developers"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("developers"));
+        assertThat(driver.getCurrentUrl().contains("developers")).isTrue();
         driver.close();
         driver.switchTo().window(googleDevsTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
     @Test
     public void validateLiveChatLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
         managementSectionAdmin.clickOnLiveChatLink();
         List<String> googleDevsTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(googleDevsTabs.get(1));
         wait.until(ExpectedConditions.urlContains("chat"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("chat"));
+        assertThat(driver.getCurrentUrl().contains("chat")).isTrue();
         driver.close();
         driver.switchTo().window(googleDevsTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
     @Test
     public void validateSendinBlueLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
         managementSectionAdmin.clickOnSendinBlueLink();
         List<String> googleDevsTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(googleDevsTabs.get(1));
         wait.until(ExpectedConditions.urlContains("sendinblue"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("sendinblue"));
+        assertThat(driver.getCurrentUrl().contains("sendinblue")).isTrue();
         driver.close();
         driver.switchTo().window(googleDevsTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
     @Test
     public void validateImmotionHostingLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
         managementSectionAdmin.clickOnInmotionHostingLink();
         List<String> googleDevsTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(googleDevsTabs.get(1));
         wait.until(ExpectedConditions.urlContains("inmotionhosting"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("inmotionhosting"));
+        assertThat(driver.getCurrentUrl().contains("inmotionhosting")).isTrue();
         driver.close();
         driver.switchTo().window(googleDevsTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
+        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 }

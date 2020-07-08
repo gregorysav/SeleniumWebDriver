@@ -1,6 +1,6 @@
 package phptravelstestsuser;
 
-import org.junit.Assert;
+import static org.assertj.core.api.Assertions.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -30,7 +30,7 @@ public class TestAccountPageUserLinks {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
         loginPage = new LoginPageUser(driver);
         loginPage.submitForm();
-        Assert.assertFalse(loginPage.isResultLoginDisplayed());
+        assertThat(loginPage.isResultLoginDisplayed()).isTrue();
     }
 
     @AfterTest
@@ -39,7 +39,7 @@ public class TestAccountPageUserLinks {
         accountPageUser.logout();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.urlContains("login"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("login"));
+        assertThat(driver.getCurrentUrl().contains("login")).isTrue();
         driver.close();
     }
 
@@ -49,10 +49,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnMobileMenuElement("Visa");
-        Assert.assertTrue(driver.getCurrentUrl().contains("m-visa"));
+        assertThat(driver.getCurrentUrl().contains("m-visa")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -64,11 +64,11 @@ public class TestAccountPageUserLinks {
         List<String> signupTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(signupTabs.get(1));
         wait.until(ExpectedConditions.urlContains("supplier-register"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("supplier-register"));
+        assertThat(driver.getCurrentUrl().contains("supplier-register")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.close();
         driver.switchTo().window(signupTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -80,11 +80,11 @@ public class TestAccountPageUserLinks {
         List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(browserTabs.get(1));
         wait.until(ExpectedConditions.urlContains("supplier"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("supplier"));
+        assertThat(driver.getCurrentUrl().contains("supplier")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.close();
         driver.switchTo().window(browserTabs.get(0));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -93,10 +93,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Contact");
-        Assert.assertTrue(driver.getCurrentUrl().contains("contact-us"));
+        assertThat(driver.getCurrentUrl().contains("contact-us")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -105,10 +105,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("How to Book");
-        Assert.assertTrue(driver.getCurrentUrl().contains("How-to-Book"));
+        assertThat(driver.getCurrentUrl().contains("How-to-Book")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -117,10 +117,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Booking Tips");
-        Assert.assertTrue(driver.getCurrentUrl().contains("Booking-Tips"));
+        assertThat(driver.getCurrentUrl().contains("Booking-Tips")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -129,10 +129,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("About Us");
-        Assert.assertTrue(driver.getCurrentUrl().contains("About-Us"));
+        assertThat(driver.getCurrentUrl().contains("About-Us")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -141,10 +141,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("FAQ");
-        Assert.assertTrue(driver.getCurrentUrl().contains("FAQ"));
+        assertThat(driver.getCurrentUrl().contains("FAQ")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -153,10 +153,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Our Partners");
-        Assert.assertTrue(driver.getCurrentUrl().contains("Our-Partners"));
+        assertThat(driver.getCurrentUrl().contains("Our-Partners")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -165,10 +165,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Privacy Policy");
-        Assert.assertTrue(driver.getCurrentUrl().contains("Privacy-Policy"));
+        assertThat(driver.getCurrentUrl().contains("Privacy-Policy")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -177,10 +177,10 @@ public class TestAccountPageUserLinks {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Terms of Use");
-        Assert.assertTrue(driver.getCurrentUrl().contains("Terms-of-Use"));
+        assertThat(driver.getCurrentUrl().contains("Terms-of-Use")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -192,12 +192,12 @@ public class TestAccountPageUserLinks {
         List<String> appStoreTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(appStoreTabs.get(1));
         wait.until(ExpectedConditions.urlContains("apps.apple.com"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("apps.apple.com"));
+        assertThat(driver.getCurrentUrl().contains("apps.apple.com")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.close();
         driver.switchTo().window(appStoreTabs.get(0));
         wait.until(ExpectedConditions.urlContains("account"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
     @Test
@@ -205,16 +205,16 @@ public class TestAccountPageUserLinks {
         accountPageUser = new AccountPageUserUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
         accountPageUser.downloadOnDevice("Android");
         List<String> playStoreTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(playStoreTabs.get(1));
         wait.until(ExpectedConditions.urlContains("play.google.com"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("play.google.com"));
+        assertThat(driver.getCurrentUrl().contains("play.google.com")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.close();
         driver.switchTo().window(playStoreTabs.get(0));
         wait.until(ExpectedConditions.urlContains("account"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("account"));
+        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 }
