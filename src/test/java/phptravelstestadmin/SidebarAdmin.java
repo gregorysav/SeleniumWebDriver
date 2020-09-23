@@ -1,6 +1,5 @@
 package phptravelstestadmin;
 
-import io.qameta.allure.Issue;
 import io.qameta.allure.Link;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +12,6 @@ import org.testng.annotations.Test;
 import phptravelsadmin.LoginPageAdmin;
 import phptravelsadmin.SidebarLinksAdmin;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class SidebarAdmin {
@@ -29,9 +27,9 @@ public class SidebarAdmin {
     String[] blogLinks = {"category", "settings"};
     String[] offersLinks = {"settings"};
 
-    @BeforeTest
-    public void setup() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver_win32\\chromedriver.exe");
+    @BeforeTest(description = "Start chrome web driver and log in")
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
@@ -39,13 +37,13 @@ public class SidebarAdmin {
         loginPageAdmin.submitForm();
     }
 
-    @AfterTest
+    @AfterTest(description = "Sign out and close web driver")
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
         driver.close();
     }
 
-    @Test
+    @Test(description = "Validate Dashboard information")
     @Link(name="Base page", url="https://www.phptravels.net/admin")
     public void validateDashboardLink() {
         wait = new WebDriverWait(driver, 10);
@@ -56,7 +54,7 @@ public class SidebarAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Updates link works correctly")
     public void validateUpdatesLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -66,7 +64,7 @@ public class SidebarAdmin {
         assertThat(driver.getCurrentUrl().contains("admin/updates")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Modules link works correctly")
     public void validateModulesLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -76,7 +74,7 @@ public class SidebarAdmin {
         assertThat(driver.getCurrentUrl().contains("admin/settings/modules")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate General link works correctly")
     public void validateGeneralLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -87,7 +85,7 @@ public class SidebarAdmin {
         }
     }
 
-    @Test
+    @Test(description = "Validate Accounts link works correctly")
     public void validateAccountsLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -98,7 +96,7 @@ public class SidebarAdmin {
         }
     }
 
-    @Test
+    @Test(description = "Validate CMS link works correctly")
     public void validateCMSLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -108,7 +106,7 @@ public class SidebarAdmin {
         assertThat(sidebarLinksAdmin.checkCMSLinks("menu")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Hotels link works correctly")
     public void validateHotelsLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -119,7 +117,7 @@ public class SidebarAdmin {
         }
     }
 
-    @Test
+    @Test(description = "Validate Flights link works correctly")
     public void validateFlightsLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -130,16 +128,7 @@ public class SidebarAdmin {
         }
     }
 
-    @Test
-    public void validateViatorLink() {
-        wait = new WebDriverWait(driver, 10);
-        assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
-        sidebarLinksAdmin = new SidebarLinksAdmin(driver);
-        sidebarLinksAdmin.clickOnViatorLink();
-        assertThat(sidebarLinksAdmin.checkViatorLinks()).isTrue();
-    }
-
-    @Test
+    @Test(description = "Validate Cartrawler link works correctly")
     public void validateCartrawlerLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -148,7 +137,7 @@ public class SidebarAdmin {
         assertThat(sidebarLinksAdmin.checkCartrawlerLinks()).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Visa link works correctly")
     public void validateVisaLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -159,7 +148,7 @@ public class SidebarAdmin {
         }
     }
 
-    @Test
+    @Test(description = "Validate Blog link works correctly")
     public void validateBlogLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -170,7 +159,7 @@ public class SidebarAdmin {
         }
     }
 
-    @Test
+    @Test(description = "Validate Locations link works correctly")
     public void validateLocationsLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
@@ -179,7 +168,7 @@ public class SidebarAdmin {
         assertThat(sidebarLinksAdmin.checkLocationsLinks()).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Offers link works correctly")
     public void validateOffersLink() {
         wait = new WebDriverWait(driver, 10);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();

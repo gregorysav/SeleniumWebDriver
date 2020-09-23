@@ -12,13 +12,13 @@ public class HomePageAdmin extends BasePageAdmin {
     @FindBy(xpath = "//li[@id='account']/a[@href='https://www.phptravels.net/admin/profile']")
     WebElement accountLink;
 
-    @FindBy(linkText = "SEE MORE ON THE BLOG")
+    @FindBy(xpath = "//div[contains(text(), 'Blog')]")
     WebElement moreOnBlog;
 
-    @FindBy(css = ".hZRXsd.sc-emmjRN")
+    @FindBy(xpath = "//div/a[contains(@href, 'https://docs.phptravels.com/')]")
     WebElement documentation;
 
-    @FindBy(css = ".ciBMsP.sc-emmjRN")
+    @FindBy(xpath = "//div/a[contains(@href, 'https://phptravels.com/integrations/')]")
     WebElement integrations;
 
     @FindBy(css = ".serverHeader__info")

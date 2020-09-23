@@ -20,6 +20,9 @@ public class LoginPageAdmin extends BasePageAdmin {
     @FindBy(className = "alert-danger")
     WebElement resultLogin;
 
+    @FindBy(xpath = "//a[contains(@href, 'https://www.phptravels.net/admin/logout')]")
+    WebElement logoutLink;
+
     public LoginPageAdmin(WebDriver driver){
         super(driver);
         driver.get(loginURL);
@@ -38,4 +41,6 @@ public class LoginPageAdmin extends BasePageAdmin {
     public boolean isResultLoginDisplayed() {
         return resultLogin.isDisplayed();
     }
+
+    public void clickOnLogoutLink() { logoutLink.click(); }
 }

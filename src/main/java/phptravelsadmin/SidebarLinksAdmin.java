@@ -39,9 +39,6 @@ public class SidebarLinksAdmin extends BasePageAdmin {
     @FindBy(xpath = "//a[@href='#Flights']")
     WebElement flights;
 
-    @FindBy(xpath = "//a[@href='#Viator']")
-    WebElement viator;
-
     @FindBy(xpath = "//a[@href='#Cartrawler']")
     WebElement cartrawler;
 
@@ -107,10 +104,6 @@ public class SidebarLinksAdmin extends BasePageAdmin {
         flights.click();
     }
 
-    public void clickOnViatorLink() {
-        viator.click();
-    }
-
     public void clickOnCartrawlerLink() { cartrawler.click(); }
 
     public void clickOnVisaLink() { visa.click(); }
@@ -168,14 +161,6 @@ public class SidebarLinksAdmin extends BasePageAdmin {
 
     public boolean checkFlightsLinks(String value) {
         WebElement el = flights.findElement(By.xpath("//a[@href='https://www.phptravels.net/admin/flights/"+ value +"']"));
-        if (el.isDisplayed()) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean checkViatorLinks() {
-        WebElement el = viator.findElement(By.xpath("//a[@href='https://www.phptravels.net/admin/viator/settings']"));
         if (el.isDisplayed()) {
             return true;
         }

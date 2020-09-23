@@ -17,7 +17,7 @@ public class LoginPageUser extends BasePageUser {
     @FindBy(className = "loginbtn")
     WebElement btnSubmit;
 
-    @FindBy(className = "resultlogin")
+    @FindBy(xpath = "//h3[contains(text(), 'Hi, Demo User')]")
     WebElement resultLogin;
 
     public LoginPageUser(WebDriver driver){

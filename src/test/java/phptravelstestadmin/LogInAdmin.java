@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,7 +13,6 @@ import phptravelsadmin.HomePageAdmin;
 import phptravelsadmin.LoginPageAdmin;
 import phptravelsadmin.ProfilePageAdmin;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -23,9 +23,9 @@ public class LogInAdmin {
     HomePageAdmin homePageAdmin;
     ProfilePageAdmin profilePageAdmin;
 
-    @BeforeTest
-    public void setup() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver_win32\\chromedriver.exe");
+    @BeforeTest(description = "Start chrome web driver and log in")
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
@@ -33,17 +33,17 @@ public class LogInAdmin {
         loginPageAdmin.submitForm();
     }
 
-    @AfterTest
+    @AfterTest(description = "Sign out and close web driver")
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
-//        accountPageUser.logout();
-//        WebDriverWait wait = new WebDriverWait(driver, 5);
-//        wait.until(ExpectedConditions.urlContains("login"));
-//        Assert.assertTrue(driver.getCurrentUrl().contains("login"));
+        loginPageAdmin.clickOnLogoutLink();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.urlContains("admin"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("admin"));
         driver.close();
     }
 
-    @Test
+    @Test(description = "Set profile information")
     public void setProfileInformation() {
         homePageAdmin = new HomePageAdmin(driver);
         homePageAdmin.clickOnAccountLink();
@@ -52,35 +52,35 @@ public class LogInAdmin {
         profilePageAdmin.setProfileInformation("FNAME", "LNAME", "98765", "Address 1st");
     }
 
-    @Test
+    @Test(description = "Validate blog link works correctly")
     public void validateMoreOnBlogLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
         homePageAdmin.clickOnMoreOnBlogLink();
-        List<String> signupTabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(signupTabs.get(1));
+//        List<String> signupTabs = new ArrayList<String>(driver.getWindowHandles());
+//        driver.switchTo().window(signupTabs.get(1));
         wait.until(ExpectedConditions.urlContains("blog"));
         assertThat(driver.getCurrentUrl().contains("blog")).isTrue();
-        driver.close();
-        driver.switchTo().window(signupTabs.get(0));
+//        driver.close();
+//        driver.switchTo().window(signupTabs.get(0));
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate documentation link works correctly")
     public void validateDocumentationLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
         homePageAdmin.clickOnDocumentationLink();
         List<String> signupTabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(signupTabs.get(1));
-        wait.until(ExpectedConditions.urlContains("documentation"));
-        assertThat(driver.getCurrentUrl().contains("documentation")).isTrue();
+        wait.until(ExpectedConditions.urlContains("docs.phptravels.com"));
+        assertThat(driver.getCurrentUrl().contains("docs.phptravels.com")).isTrue();
         driver.close();
         driver.switchTo().window(signupTabs.get(0));
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate integrations link works correctly")
     public void validateIntegrationsLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
@@ -94,7 +94,7 @@ public class LogInAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate bookings link works correctly")
     public void validateServerHeaderBookingsLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
@@ -106,7 +106,7 @@ public class LogInAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate CMS Pages link works correctly")
     public void validateServerHeaderCMSPagesLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
@@ -118,7 +118,7 @@ public class LogInAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Server Header Blog link works correctly")
     public void validateServerHeaderBlogLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
@@ -130,7 +130,7 @@ public class LogInAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Server Header Newsletter link works correctly")
     public void validateServerHeaderNewsletterLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
@@ -142,7 +142,7 @@ public class LogInAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Server Header Backup link works correctly")
     public void validateServerHeaderBackupLink() {
         WebDriverWait wait = new WebDriverWait(driver, 10);
         homePageAdmin = new HomePageAdmin(driver);
