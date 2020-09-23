@@ -22,9 +22,9 @@ public class ManagementToolsAdmin {
     LoginPageAdmin loginPageAdmin;
     ManagementSectionAdmin managementSectionAdmin;
 
-    @BeforeTest
+    @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
@@ -32,13 +32,13 @@ public class ManagementToolsAdmin {
         loginPageAdmin.submitForm();
     }
 
-    @AfterTest
+    @AfterTest(description = "Sign out and close web driver")
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
         driver.close();
     }
 
-    @Test
+    @Test(description = "Validate Google Accounts link works correctly")
     public void validateGoogleAccountsLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
@@ -53,7 +53,7 @@ public class ManagementToolsAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Google Analytics link works correctly")
     public void validateGoogleAnalyticsLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
@@ -68,7 +68,7 @@ public class ManagementToolsAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Google Devs link works correctly")
     public void validateGoogleDevsLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
@@ -83,7 +83,7 @@ public class ManagementToolsAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Live Chat link works correctly")
     public void validateLiveChatLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
@@ -98,7 +98,7 @@ public class ManagementToolsAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Sending Blue link works correctly")
     public void validateSendinBlueLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
@@ -113,8 +113,8 @@ public class ManagementToolsAdmin {
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
     }
 
-    @Test
-    public void validateImmotionHostingLink() {
+    @Test(description = "Validate Inmotion hosting link works correctly")
+    public void validateInmotionHostingLink() {
         wait = new WebDriverWait(driver, 10);
         managementSectionAdmin = new ManagementSectionAdmin(driver);
         assertThat(driver.getCurrentUrl().contains("admin")).isTrue();
