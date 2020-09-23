@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class AccountPageUserUser extends BasePageUser {
+public class AccountPageUser extends BasePageUser {
     private static String accountURL = BASE_URL + "account/";
     WebDriver driver;
     WebDriverWait wait;
@@ -56,7 +56,7 @@ public class AccountPageUserUser extends BasePageUser {
     WebElement playStoreLink;
 
 
-    public AccountPageUserUser(WebDriver driver){
+    public AccountPageUser(WebDriver driver){
         super(driver);
         wait = new WebDriverWait(driver, 10);
     }

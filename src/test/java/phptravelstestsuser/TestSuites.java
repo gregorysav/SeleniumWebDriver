@@ -18,12 +18,12 @@ import java.util.concurrent.TimeUnit;
 public class TestSuites {
     WebDriver driver;
     LoginPageUser loginPage;
-    AccountPageUserUser accountPageUser;
+    AccountPageUser accountPageUser;
     MyProfileUser myProfileUser;
 
-    @BeforeTest
-    public void setup() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver_win32\\chromedriver.exe");
+    @BeforeTest(description = "Start chrome web driver and log in")
+    public void setup() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
@@ -32,7 +32,7 @@ public class TestSuites {
         assertThat(loginPage.isResultLoginDisplayed()).isTrue();
     }
 
-    @AfterTest
+    @AfterTest(description = "Sign out and close web driver")
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
         accountPageUser.logout();
@@ -42,9 +42,9 @@ public class TestSuites {
         driver.close();
     }
 
-    @Test
+    @Test(description = "Validate Bookings link works correctly")
     public void validateAccountPage(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 5);
         wait.until(ExpectedConditions.urlMatches(accountPageUser.getURL()));
         accountPageUser.clickOnLink("Bookings");
@@ -57,9 +57,9 @@ public class TestSuites {
         accountPageUser.createInstantPrintscreen(method.getName());
     }
 
-    @Test
+    @Test(description = "Set my profile information")
     public void editMyProfile(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 5);
         accountPageUser.clickOnLink("My Profile");
         myProfileUser = new MyProfileUser(driver);

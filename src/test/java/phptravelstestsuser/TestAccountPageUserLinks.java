@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import phptravelsuser.AccountPageUserUser;
+import phptravelsuser.AccountPageUser;
 import phptravelsuser.LoginPageUser;
 
 import java.io.IOException;
@@ -20,11 +20,11 @@ import java.util.concurrent.TimeUnit;
 public class TestAccountPageUserLinks {
     WebDriver driver;
     LoginPageUser loginPage;
-    AccountPageUserUser accountPageUser;
+    AccountPageUser accountPageUser;
 
-    @BeforeTest
+    @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
@@ -33,7 +33,7 @@ public class TestAccountPageUserLinks {
         assertThat(loginPage.isResultLoginDisplayed()).isTrue();
     }
 
-    @AfterTest
+    @AfterTest(description = "Sign out and close web driver")
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
         accountPageUser.logout();
@@ -43,21 +43,21 @@ public class TestAccountPageUserLinks {
         driver.close();
     }
 
-    @Test
-    public void validateVisaLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("account"));
-        accountPageUser.clickOnMobileMenuElement("Visa");
-        assertThat(driver.getCurrentUrl().contains("m-visa")).isTrue();
-        accountPageUser.createInstantPrintscreen(method.getName());
-        driver.navigate().back();
-        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
-    }
+//    @Test
+//    public void validateVisaLink(Method method) throws IOException {
+//        accountPageUser = new AccountPageUser(driver);
+//        WebDriverWait wait = new WebDriverWait(driver, 10);
+//        wait.until(ExpectedConditions.urlContains("account"));
+//        accountPageUser.clickOnMobileMenuElement("Visa");
+//        assertThat(driver.getCurrentUrl().contains("m-visa")).isTrue();
+//        accountPageUser.createInstantPrintscreen(method.getName());
+//        driver.navigate().back();
+//        assertThat(driver.getCurrentUrl().contains("account")).isTrue();
+//    }
 
-    @Test
+    @Test(description = "Validate Sign up footer link works correctly")
     public void validateSignUpLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Supplier Sign Up");
@@ -71,9 +71,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Supplier Login footer link works correctly")
     public void validateLoginLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Supplier Login");
@@ -87,9 +87,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Contact footer link works correctly")
     public void validateContactLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Contact");
@@ -99,9 +99,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate How to Book footer link works correctly")
     public void validateHowToBookLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("How to Book");
@@ -111,9 +111,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Booking Tips footer link works correctly")
     public void validateBookingTipsLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Booking Tips");
@@ -123,21 +123,21 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate About us footer link works correctly")
     public void validateAboutUsLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("About Us");
-        assertThat(driver.getCurrentUrl().contains("About-Us")).isTrue();
+        assertThat(driver.getCurrentUrl().contains("about-Us")).isTrue();
         accountPageUser.createInstantPrintscreen(method.getName());
         driver.navigate().back();
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate FAQ footer link works correctly")
     public void validateFAQLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("FAQ");
@@ -147,9 +147,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Our Partners footer link works correctly")
     public void validateOurPartnersLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Our Partners");
@@ -159,9 +159,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Privacy Policy footer link works correctly")
     public void validatePrivacyPolicyLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Privacy Policy");
@@ -171,9 +171,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Terms of Use footer link works correctly")
     public void validateTermsOfUseLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.clickOnFooterElement("Terms of Use");
@@ -183,9 +183,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate IOS link works correctly")
     public void validateAppStoreDeviceLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         accountPageUser.downloadOnDevice("IOS");
@@ -200,9 +200,9 @@ public class TestAccountPageUserLinks {
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
     }
 
-    @Test
+    @Test(description = "Validate Android link works correctly")
     public void validatePlayStoreDeviceLink(Method method) throws IOException {
-        accountPageUser = new AccountPageUserUser(driver);
+        accountPageUser = new AccountPageUser(driver);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.urlContains("account"));
         assertThat(driver.getCurrentUrl().contains("account")).isTrue();
