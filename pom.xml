@@ -64,7 +64,7 @@
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/phptravelstestadmin/testng.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/testng_admin.xml</suiteXmlFile>
                             </suiteXmlFiles>
                             <argLine>
                                 -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -124,7 +124,7 @@
                         <configuration>
                             <testFailureIgnore>true</testFailureIgnore>
                             <suiteXmlFiles>
-                                <suiteXmlFile>src/test/java/phptravelstestsuser/testng.xml</suiteXmlFile>
+                                <suiteXmlFile>src/test/java/testng_user.xml</suiteXmlFile>
                             </suiteXmlFiles>
                             <argLine>
                                 -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"

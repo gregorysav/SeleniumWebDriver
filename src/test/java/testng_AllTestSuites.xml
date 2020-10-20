@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="UK_PMRV Test Suites"  >
+
+    <suite-files>
+        <suite-file path="testng_admin.xml" />
+<!--        <suite-file path="testng_user.xml" />-->
+    </suite-files>
+</suite>

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import phptravelsuser.*;
 import java.io.IOException;
@@ -21,9 +22,10 @@ public class TestSuites {
     AccountPageUser accountPageUser;
     MyProfileUser myProfileUser;
 
+    @Parameters({ "chromeDriver" })
     @BeforeTest(description = "Start chrome web driver and log in")
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
+    public void setup(String chromeDriver) {
+        System.setProperty("webdriver.chrome.driver", chromeDriver);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;

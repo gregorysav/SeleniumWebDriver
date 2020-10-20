@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.*;
 import phptravelsadmin.HomePageAdmin;
@@ -23,9 +24,10 @@ public class LogInAdmin {
     HomePageAdmin homePageAdmin;
     ProfilePageAdmin profilePageAdmin;
 
+    @Parameters({ "chromeDriver" })
     @BeforeTest(description = "Start chrome web driver and log in")
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
+    public void setup(String chromeDriver) {
+        System.setProperty("webdriver.chrome.driver", chromeDriver);
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;

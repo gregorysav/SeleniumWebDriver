@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Admin Test Cases" parallel="tests" thread-count="1" verbose="1">
+    <parameter name="chromeDriver" value="C:\workspace_offline\chromedriver.exe" />
+    <test name="Log in Admin" >
+        <classes>
+            <class name="phptravelstestadmin.LogInAdmin"></class>
+        </classes>
+    </test>
+    <test name="Management Tools Admin" >
+        <classes>
+            <class name="phptravelstestadmin.ManagementToolsAdmin"></class>
+        </classes>
+    </test>
+    <test name="Sidebat Admin" >
+        <classes>
+            <class name="phptravelstestadmin.SidebarAdmin"></class>
+        </classes>
+    </test>
+</suite>
