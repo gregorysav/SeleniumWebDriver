@@ -1,5 +1,8 @@
 pipeline {
     agent  any
+     parameters {
+            choice(name: 'role', choices: ['ta', 'tu'], description: 'Pick which role should the tests run against')
+    }
     tools {
         maven 'M3'
     }
@@ -16,7 +19,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'mvn clean test'
+                sh "mvn clean test -P${params.role}"
             }
         }
     }
