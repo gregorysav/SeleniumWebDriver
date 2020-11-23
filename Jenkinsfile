@@ -12,12 +12,7 @@ pipeline {
                 git 'https://github.com/gregorysav/SeleniumWebDriver'
             }
         }
-        stage('Build') {
-            steps {
-                sh 'mvn clean compile'
-            }
-        }
-        stage('Test') {
+        stage('Build and Test') {
             steps {
                 sh "mvn clean test -P${params.role}"
             }

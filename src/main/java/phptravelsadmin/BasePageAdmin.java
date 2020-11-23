@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.File;
 import java.io.IOException;
 
-public class BasePageAdmin {
+abstract class BasePageAdmin {
     protected static String BASE_URL = "https://www.phptravels.net/admin";
     WebDriver driver;
 

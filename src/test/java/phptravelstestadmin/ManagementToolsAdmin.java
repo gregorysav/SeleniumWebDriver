@@ -24,7 +24,7 @@ public class ManagementToolsAdmin {
 
     @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\user\\Desktop\\chromedriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
