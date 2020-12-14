@@ -27,7 +27,7 @@ public class TestAccountPageUserLinks {
         System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPageUser(driver);
         loginPage.submitForm();
         assertThat(loginPage.isResultLoginDisplayed()).isTrue();

@@ -29,10 +29,10 @@ public class SidebarAdmin {
 
     @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPageAdmin = new LoginPageAdmin(driver);
         loginPageAdmin.submitForm();
     }

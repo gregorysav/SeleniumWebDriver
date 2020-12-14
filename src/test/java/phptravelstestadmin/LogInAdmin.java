@@ -2,6 +2,7 @@ package phptravelstestadmin;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -25,12 +26,13 @@ public class LogInAdmin {
 
     @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPageAdmin = new LoginPageAdmin(driver);
         loginPageAdmin.submitForm();
+
     }
 
     @AfterTest(description = "Sign out and close web driver")
