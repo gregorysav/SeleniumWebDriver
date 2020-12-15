@@ -1,10 +1,10 @@
 package phptravelstestsuser;
 
+import base.TestBase;
 import enumpackage.Currency;
 import enumpackage.Languages;
 import static org.assertj.core.api.Assertions.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -13,20 +13,15 @@ import org.testng.annotations.Test;
 import phptravelsuser.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.concurrent.TimeUnit;
 
-public class TestSuites {
-    WebDriver driver;
+public class TestSuites extends TestBase {
+    WebDriver driver= TestBase.getWebDriver();
     LoginPageUser loginPage;
     AccountPageUser accountPageUser;
     MyProfileUser myProfileUser;
 
     @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPageUser(driver);
         loginPage.submitForm();
         assertThat(loginPage.isResultLoginDisplayed()).isTrue();
@@ -36,9 +31,6 @@ public class TestSuites {
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
         accountPageUser.logout();
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.urlContains("login"));
-        assertThat(driver.getCurrentUrl().contains("login")).isTrue();
         driver.close();
     }
 
@@ -52,8 +44,6 @@ public class TestSuites {
         assertThat(accountPageUser.locateBookingElement("Singapore")).isTrue();
         accountPageUser.clickOnLink("My Profile");
         assertThat(accountPageUser.checkMyProfile()).isTrue();
-        accountPageUser.chooseCurrency(Currency.EUR.toString());
-        accountPageUser.chooseLanguage(Languages.English.toString());
         accountPageUser.createInstantPrintscreen(method.getName());
     }
 

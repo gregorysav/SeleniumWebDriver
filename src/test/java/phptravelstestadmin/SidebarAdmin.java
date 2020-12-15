@@ -1,8 +1,8 @@
 package phptravelstestadmin;
 
+import base.TestBase;
 import io.qameta.allure.Link;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.assertj.core.api.Assertions.*;
@@ -12,10 +12,8 @@ import org.testng.annotations.Test;
 import phptravelsadmin.LoginPageAdmin;
 import phptravelsadmin.SidebarLinksAdmin;
 
-import java.util.concurrent.TimeUnit;
-
-public class SidebarAdmin {
-    WebDriver driver;
+public class SidebarAdmin extends TestBase{
+    WebDriver driver = TestBase.getWebDriver();
     WebDriverWait wait;
     LoginPageAdmin loginPageAdmin;
     SidebarLinksAdmin sidebarLinksAdmin;
@@ -29,10 +27,6 @@ public class SidebarAdmin {
 
     @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPageAdmin = new LoginPageAdmin(driver);
         loginPageAdmin.submitForm();
     }

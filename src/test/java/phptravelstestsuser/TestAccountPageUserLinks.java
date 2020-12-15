@@ -1,8 +1,9 @@
 package phptravelstestsuser;
 
 import static org.assertj.core.api.Assertions.*;
+
+import base.TestBase;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -15,19 +16,14 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class TestAccountPageUserLinks {
-    WebDriver driver;
+public class TestAccountPageUserLinks extends TestBase {
+    WebDriver driver =TestBase.getWebDriver();
     LoginPageUser loginPage;
     AccountPageUser accountPageUser;
 
     @BeforeTest(description = "Start chrome web driver and log in")
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPageUser(driver);
         loginPage.submitForm();
         assertThat(loginPage.isResultLoginDisplayed()).isTrue();
@@ -37,9 +33,6 @@ public class TestAccountPageUserLinks {
     public void cleanup() throws InterruptedException {
         Thread.sleep(3000);
         accountPageUser.logout();
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.urlContains("login"));
-        assertThat(driver.getCurrentUrl().contains("login")).isTrue();
         driver.close();
     }
 

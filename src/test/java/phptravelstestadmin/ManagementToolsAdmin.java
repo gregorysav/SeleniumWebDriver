@@ -1,7 +1,7 @@
 package phptravelstestadmin;
 
+import base.TestBase;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.assertj.core.api.Assertions.*;
@@ -11,23 +11,17 @@ import org.testng.annotations.Test;
 import phptravelsadmin.LoginPageAdmin;
 import phptravelsadmin.ManagementSectionAdmin;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-public class ManagementToolsAdmin {
-    WebDriver driver;
+public class ManagementToolsAdmin extends TestBase {
+    WebDriver driver = TestBase.getWebDriver();
     WebDriverWait wait;
     LoginPageAdmin loginPageAdmin;
     ManagementSectionAdmin managementSectionAdmin;
 
     @BeforeTest(description = "Start chrome web driver and log in")
-    public void setup() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "C:\\workspace_offline\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    public void setup() {
         loginPageAdmin = new LoginPageAdmin(driver);
         loginPageAdmin.submitForm();
     }
