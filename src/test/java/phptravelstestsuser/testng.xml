@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test User Functionality Suite" parallel="tests" verbose="1" >
+    <test name="User Test Scenarios" >
+        <classes>
+            <class name="phptravelstestsuser.TestSuites" />
+        </classes>
+    </test>
+    <test name="Test User Account Page Links" >
+        <classes>
+            <class name="phptravelstestsuser.TestAccountPageUserLinks"></class>
+        </classes>
+    </test>
+</suite>
